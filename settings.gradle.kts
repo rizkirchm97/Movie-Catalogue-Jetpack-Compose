@@ -1,16 +1,53 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
-        google()
-        mavenCentral()
         gradlePluginPortal()
+        mavenCentral()
+        mavenLocal()
+        google()
+        gradlePluginPortal()
+        maven("https://jitpack.io")
+        maven("https://oss.jfrog.org/libs-snapshot")
+    }
+
+    gradle.projectsLoaded {
+        plugins {
+            plugins {
+                id("com.android.application") version (extra.properties["androidGradlePluginVersion"].toString())
+                id("com.android.library") version (extra.properties["androidGradlePluginVersion"].toString())
+                id("org.jetbrains.kotlin.android") version (extra.properties["kotlinVersion"].toString())
+                id("org.jetbrains.kotlin.jvm") version (extra.properties["kotlinVersion"].toString())
+                id("com.google.dagger.hilt.android") version (extra.properties["hiltVersion"].toString())
+            }
+        }
+
+
     }
 }
+
+
+
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google()
+        gradlePluginPortal()
         mavenCentral()
+        mavenLocal()
+        google()
+        maven("https://jitpack.io")
+        maven("https://oss.jfrog.org/libs-snapshot")
     }
 }
 rootProject.name = "Movie Catalogue"
 include(":app")
+include(":core:providers")
+include(":core:themes")
+include(":core:component")
+include(":data:model")
+include(":data:local")
+include(":data:remote")
+include(":domain")
+include(":features:home_movie")
+include(":features:detail_movie")
+include(":di")
