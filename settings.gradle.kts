@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":utils")
+
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
