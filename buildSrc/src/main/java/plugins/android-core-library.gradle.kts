@@ -1,14 +1,21 @@
 package plugins
 import dependencies.*
+import java.util.Properties
 
 plugins {
     id("com.android.library")
-    id ("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id ("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android{
+    kapt {
+        correctErrorTypes = true
+        generateStubs = true
+    }
     compileSdk = AppConfig.compileSdkVersion
     defaultConfig {
         minSdk = AppConfig.minSdkVersion
@@ -17,17 +24,24 @@ android{
         vectorDrawables{
             useSupportLibrary = true
         }
+
+        val prop = Properties().apply {
+            load(project.rootProject.file("local.properties").inputStream())
+        }
+
+        buildConfigField(type = "String", name = "ACCESS_TOKEN", value = prop.getProperty("ACCESS_TOKEN"))
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures{
         compose = true
+        buildConfig = true
     }
 
     composeOptions {
@@ -47,4 +61,9 @@ dependencies{
     addHiltDependencies()
     addNetworkDependencies()
     addAndroidTestsDependencies()
+}
+
+kapt {
+    correctErrorTypes = true
+    generateStubs = true
 }

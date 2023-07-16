@@ -1,8 +1,10 @@
 
+import androidx.compose.runtime.Composable
+
 @Composable
 fun HomeMovieScreen(
     uiState: HomeMovieUiState,
-    onMovieClick: (Movie) -> Unit,
+    onMovieClick: (String) -> Unit,
     onRefreshUi: () -> Unit
 ) {
     HomeMovieScreen(
@@ -14,5 +16,4 @@ fun HomeMovieScreen(
 
 @Composable
 fun HomeMovieUiScreen() {
-
 }

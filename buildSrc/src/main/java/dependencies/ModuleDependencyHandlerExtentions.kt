@@ -13,15 +13,14 @@ fun DependencyHandler.addDomainModule() {
 }
 
 fun DependencyHandler.addDataModule() {
-    dataModule.forEach {
-        add("implementation", project(it))
-    }
+    add("implementation", project(ModulesDep.data))
+
 }
 
 fun DependencyHandler.addCoreModule() {
-    coreModule.forEach {
-        add("implementation", project(it))
-    }
+
+    add("implementation", project(ModulesDep.core))
+
 
 }
 

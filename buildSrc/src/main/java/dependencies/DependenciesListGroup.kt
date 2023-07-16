@@ -28,8 +28,8 @@ internal val coilImageLoadingDependencies = listOf(
 
 internal val networkDependencies = listOf(
     Dependencies.retrofit,
-    Dependencies.retrofitGsonConverter,
-    Dependencies.gson,
+    Dependencies.moshiConverter,
+    Dependencies.retrofitMock,
     Dependencies.okhHttp3,
     Dependencies.okhHttp3Interceptor,
     Dependencies.rxJava3adapter,

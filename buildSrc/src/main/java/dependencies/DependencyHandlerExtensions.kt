@@ -46,7 +46,7 @@ fun DependencyHandler.addTimberDependencies(configurationName:String = "implemen
 }
 
 fun DependencyHandler.addGsonDependencies(configurationName:String = "implementation"){
-    add(configurationName,Dependencies.gson)
+    add(configurationName,Dependencies.retrofitMock)
 }
 
 

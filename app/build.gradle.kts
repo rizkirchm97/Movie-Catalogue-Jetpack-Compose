@@ -9,15 +9,23 @@ import dependencies.addFeatureModule
 import dependencies.addHiltDependencies
 import dependencies.addLeakcanaryDependencies
 import dependencies.addNetworkDependencies
+import java.util.*
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id ("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.plugin.parcelize")
+    id("kotlin-parcelize")
+    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
+    kapt {
+        correctErrorTypes = true
+        generateStubs = true
+    }
+
     namespace = "com.rizkir.myapplication"
     compileSdk = AppConfig.compileSdkVersion
 
@@ -32,6 +40,9 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+
+
     }
 
     buildTypes {
@@ -47,11 +58,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -68,7 +79,6 @@ android {
 
 dependencies {
 
-    addDataModule()
     addDataModule()
     addDiModule()
     addFeatureModule()
@@ -99,4 +109,9 @@ dependencies {
 //    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 //    debugImplementation("androidx.compose.ui:ui-tooling")
 //    debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+kapt {
+    correctErrorTypes = true
+    generateStubs = true
 }

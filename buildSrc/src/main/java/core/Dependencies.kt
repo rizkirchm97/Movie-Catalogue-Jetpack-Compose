@@ -3,7 +3,7 @@ package core
 
 internal object Dependencies {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtxVersion}"
-    const val composeMaterial = "androidx.compose.material:material:${Versions.materialVersion}"
+    const val composeMaterial = "androidx.compose.material3:material3:${Versions.materialVersion}"
     const val composeActivity = "androidx.activity:activity-compose:${Versions.activityComposeVersion}"
     const val composeUi = "androidx.compose.ui:ui:${Versions.composeVersion}"
     const val composeNavigation = "androidx.navigation:navigation-compose:${Versions.composeNavigationVersion}"
@@ -21,10 +21,10 @@ internal object Dependencies {
 
     const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofitVersion}"
     const val rxJava3adapter = "com.squareup.retrofit2:adapter-rxjava3:${Versions.retrofitVersion}"
-    const val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitVersion}"
+    const val moshiConverter = "com.squareup.retrofit2:converter-moshi:${Versions.retrofitVersion}"
     const val okhHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3Version}"
     const val okhHttp3Interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3Version}"
-    const val gson = "com.google.code.gson:gson:${Versions.gsonVersion}"
+    const val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.mockVersion}"
 
     const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
     const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanaryVersion}"
