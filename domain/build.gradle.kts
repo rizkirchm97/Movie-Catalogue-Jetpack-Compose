@@ -1,4 +1,4 @@
-
+import dependencies.addCoreModule
 
 plugins {
     plugins.`android-core-library`
@@ -10,5 +10,5 @@ android {
 }
 
 dependencies {
-
+    addCoreModule()
 }

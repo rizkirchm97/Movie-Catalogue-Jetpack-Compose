@@ -5,6 +5,7 @@ import dependencies.addCoreModule
 import dependencies.addCoroutinesAndroidDependencies
 import dependencies.addDataModule
 import dependencies.addDiModule
+import dependencies.addDomainModule
 import dependencies.addFeatureModule
 import dependencies.addHiltDependencies
 import dependencies.addLeakcanaryDependencies
@@ -14,17 +15,14 @@ import java.util.*
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
-    kapt {
-        correctErrorTypes = true
-        generateStubs = true
-    }
+
 
     namespace = "com.rizkir.myapplication"
     compileSdk = AppConfig.compileSdkVersion
@@ -81,6 +79,7 @@ dependencies {
 
     addDataModule()
     addDiModule()
+    addDomainModule()
     addFeatureModule()
     addCoreModule()
 
@@ -113,5 +112,4 @@ dependencies {
 
 kapt {
     correctErrorTypes = true
-    generateStubs = true
 }

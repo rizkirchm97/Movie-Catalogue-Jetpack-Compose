@@ -4,17 +4,13 @@ import dependencies.*
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
-    id("org.jetbrains.kotlin.kapt")
 }
 
 android{
-    kapt {
-        correctErrorTypes = true
-        generateStubs = true
-    }
     compileSdk = AppConfig.compileSdkVersion
     defaultConfig {
         minSdk = AppConfig.minSdkVersion
@@ -62,6 +58,6 @@ dependencies{
 
 kapt {
     correctErrorTypes = true
-    generateStubs = true
+
 
 }
