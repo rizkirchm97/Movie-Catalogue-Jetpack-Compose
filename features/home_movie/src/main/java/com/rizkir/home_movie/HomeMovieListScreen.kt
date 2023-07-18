@@ -1,5 +1,6 @@
 
 import androidx.compose.runtime.Composable
+import com.rizkir.home_movie.HomeMovieUiState
 
 @Composable
 fun HomeMovieScreen(
