@@ -33,4 +33,6 @@ internal val networkDependencies = listOf(
     Dependencies.okhHttp3,
     Dependencies.okhHttp3Interceptor,
     Dependencies.rxJava3adapter,
+    Dependencies.pagingCompose,
+    Dependencies.paging
 )

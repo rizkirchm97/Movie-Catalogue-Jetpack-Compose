@@ -1,12 +1,15 @@
 package com.rizkir.myapplication.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.rizkir.core.utils.NavRoute
+import com.rizkir.home_movie.HomeMovieRoute
+import com.rizkir.home_movie.HomeMovieViewModel
 
 /**
  * created by RIZKI RACHMANUDIN on 17/07/2023
@@ -21,8 +24,10 @@ fun AppNav(
         startDestination = NavRoute.homeMovieScreen
     ) {
         composable(NavRoute.homeMovieScreen) {
-//            val viewModel: Mov
-//            HomeScreen()
+            val viewModel: HomeMovieViewModel = hiltViewModel()
+            HomeMovieRoute(viewModel = viewModel) {
+                navController.navigate(NavRoute.detailMovieScreen)
+            }
         }
         composable(NavRoute.detailMovieScreen) {
 //            DetailScreen()

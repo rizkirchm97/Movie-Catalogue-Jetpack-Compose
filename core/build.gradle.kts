@@ -1,3 +1,5 @@
+import dependencies.addNetworkDependencies
+
 plugins {
     plugins.`android-base-library`
 }
@@ -5,4 +7,8 @@ plugins {
 android {
     namespace = "com.rizkir.core"
 
+}
+
+dependencies {
+    addNetworkDependencies()
 }

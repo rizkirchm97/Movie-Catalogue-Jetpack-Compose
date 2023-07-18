@@ -1,5 +1,6 @@
 package com.rizkir.domain.utils
 
+import androidx.paging.PagingData
 import com.rizkir.core.utils.Result
 import kotlinx.coroutines.flow.Flow
 
@@ -8,6 +9,6 @@ import kotlinx.coroutines.flow.Flow
  */
 interface UseCase
 
-interface BaseUseCases<Params, Type> : UseCase {
-    suspend fun execute(params: Params?): Flow<Result<Type>>
+interface BaseUseCases<Params, Type : Any> : UseCase {
+    suspend fun execute(params: Params?): Flow<PagingData<Type>>
 }

@@ -25,6 +25,8 @@ internal object Dependencies {
     const val okhHttp3 = "com.squareup.okhttp3:okhttp:${Versions.okhttp3Version}"
     const val okhHttp3Interceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3Version}"
     const val retrofitMock = "com.squareup.retrofit2:retrofit-mock:${Versions.mockVersion}"
+    const val paging = "androidx.paging:paging-runtime:${Versions.paging_version}"
+    const val pagingCompose = "androidx.paging:paging-compose:${Versions.paging_compose_version}"
 
     const val kotlinCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutinesVersion}"
     const val leakcanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakcanaryVersion}"

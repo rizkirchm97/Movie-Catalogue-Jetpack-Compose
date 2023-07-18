@@ -10,14 +10,11 @@ import dependencies.addFeatureModule
 import dependencies.addHiltDependencies
 import dependencies.addLeakcanaryDependencies
 import dependencies.addNetworkDependencies
-import java.util.*
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("org.jetbrains.kotlin.plugin.parcelize")
-    id("kotlin-parcelize")
     id("dagger.hilt.android.plugin")
 }
 
@@ -56,11 +53,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "18"
     }
     buildFeatures {
         compose = true

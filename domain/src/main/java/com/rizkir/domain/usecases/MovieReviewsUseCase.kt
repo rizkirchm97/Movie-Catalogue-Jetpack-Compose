@@ -13,9 +13,9 @@ import javax.inject.Inject
  */
 class MovieReviewsUseCase @Inject constructor(
     private val movieCatalogueRepository: MovieCatalogueRepository
-) : BaseUseCases<MovieReviewsUseCase.Params, List<MovieReviewEntity>> {
+) : BaseUseCases<MovieReviewsUseCase.Params, MovieReviewEntity> {
     data class Params(val movieId: Int)
-    override suspend fun execute(params: MovieReviewsUseCase.Params?): Flow<Result<List<MovieReviewEntity>>> {
+    override suspend fun execute(params: MovieReviewsUseCase.Params?): Flow<Result<MovieReviewEntity>> {
         return movieCatalogueRepository.fetchMovieReviews(params)
     }
 }

@@ -13,9 +13,9 @@ import javax.inject.Inject
  */
 class MovieImageUseCase @Inject constructor(
     private val movieCatalogueRepository: MovieCatalogueRepository
-) : BaseUseCases<MovieImageUseCase.Params, List<MovieImageEntity>> {
+) : BaseUseCases<MovieImageUseCase.Params, MovieImageEntity> {
     data class Params(val movieId: Int)
-    override suspend fun execute(params: MovieImageUseCase.Params?): Flow<Result<List<MovieImageEntity>>> {
+    override suspend fun execute(params: MovieImageUseCase.Params?): Flow<Result<MovieImageEntity>> {
         return movieCatalogueRepository.fetchMovieImages(params)
     }
 }

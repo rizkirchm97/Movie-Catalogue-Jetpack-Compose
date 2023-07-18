@@ -29,7 +29,7 @@ object OkHttpModule {
     fun provideOkHttpClient(
         loggerInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
-        val timeOut = 30
+        val timeOut = 60
         val httpClient = OkHttpClient().newBuilder()
             .connectTimeout(timeOut.toLong(), TimeUnit.SECONDS)
             .readTimeout(timeOut.toLong(), TimeUnit.SECONDS)

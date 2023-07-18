@@ -21,4 +21,6 @@ internal object Versions {
     const val espressoCoreVersion = "3.5.0"
     const val jUnitVersion = "4.13.2"
     const val jUnitExtVersion = "1.1.4"
+    const val paging_version = "3.1.1"
+    const val paging_compose_version = "3.2.0-rc01"
 }

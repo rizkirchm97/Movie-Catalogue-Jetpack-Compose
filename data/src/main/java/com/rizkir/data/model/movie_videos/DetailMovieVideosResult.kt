@@ -12,6 +12,6 @@ data class DetailMovieVideosResult(
     @field:Json(name = "key") val key: String,
     @field:Json(name = "name") val name: String,
     @field:Json(name = "site") val site: String,
-    @field:Json(name = "size") val size: String,
+    @field:Json(name = "size") val size: Int,
     @field:Json(name = "type") val type: String
 )

@@ -13,11 +13,11 @@ data class MovieDetailResponse(
     @field:Json(name = "genres") val genres: List<Genre>,
     @field:Json(name = "homepage") val homepage: String,
     @field:Json(name = "id") val id: Int,
-    @field:Json(name = "imdb_id") val imdb_id: Any,
+    @field:Json(name = "imdb_id") val imdb_id: String,
     @field:Json(name = "original_language") val original_language: String,
     @field:Json(name = "original_title") val original_title: String,
     @field:Json(name = "overview") val overview: String,
-    @field:Json(name = "popularity") val popularity: String,
+    @field:Json(name = "popularity") val popularity: Double,
     @field:Json(name = "poster_path") val poster_path: String,
     @field:Json(name = "production_companies") val production_companies: List<ProductionCompany>,
     @field:Json(name = "production_countries") val production_countries: List<ProductionCountry>,
@@ -29,6 +29,6 @@ data class MovieDetailResponse(
     @field:Json(name = "tagline") val tagline: String,
     @field:Json(name = "title") val title: String,
     @field:Json(name = "video") val video: Boolean,
-    @field:Json(name = "vote_average") val vote_average: String,
+    @field:Json(name = "vote_average") val vote_average: Double,
     @field:Json(name = "vote_count") val vote_count: Int
 )

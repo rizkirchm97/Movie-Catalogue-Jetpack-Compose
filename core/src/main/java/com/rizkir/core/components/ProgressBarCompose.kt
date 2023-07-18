@@ -13,8 +13,6 @@ fun CircularProgressBar() {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
-        CircularProgressIndicator(
-
-        )
+        CircularProgressIndicator()
     }
 }

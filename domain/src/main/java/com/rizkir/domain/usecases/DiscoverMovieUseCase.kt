@@ -1,5 +1,6 @@
 package com.rizkir.domain.usecases
 
+import androidx.paging.PagingData
 import com.rizkir.core.utils.Result
 import com.rizkir.domain.entities.MovieEntity
 import com.rizkir.domain.repositories.MovieCatalogueRepository
@@ -9,9 +10,9 @@ import javax.inject.Inject
 
 class DiscoverMovieUseCase @Inject constructor(
     private val movieCatalogueRepository: MovieCatalogueRepository
-) : BaseUseCases<DiscoverMovieUseCase.Params, List<MovieEntity>> {
-    data class Params(val movieId: Int)
-    override suspend fun execute(params: DiscoverMovieUseCase.Params?): Flow<Result<List<MovieEntity>>> {
-        return movieCatalogueRepository.fetchDiscoverMovie()
+) : BaseUseCases<DiscoverMovieUseCase.Params, MovieEntity> {
+    data class Params(val page: Int?)
+    override suspend fun execute(params: DiscoverMovieUseCase.Params?): Flow<PagingData<MovieEntity>> {
+        return movieCatalogueRepository.fetchDiscoverMovie(params?.page ?: 1)
     }
 }
