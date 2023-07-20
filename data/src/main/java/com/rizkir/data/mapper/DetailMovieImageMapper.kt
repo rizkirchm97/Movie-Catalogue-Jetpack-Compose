@@ -1,8 +1,8 @@
 package com.rizkir.data.mapper
 
-import com.rizkir.data.model.movie_images.Backdrop
-import com.rizkir.data.model.movie_images.DetailMovieImagesResponse
-import com.rizkir.data.model.movie_images.Poster
+import com.rizkir.data.model.dto.movie_images.Backdrop
+import com.rizkir.data.model.dto.movie_images.DetailMovieImagesResponse
+import com.rizkir.data.model.dto.movie_images.Poster
 import com.rizkir.domain.entities.MovieImageEntity
 import com.rizkir.domain.entities.Backdrop as BackdropEntity
 import com.rizkir.domain.entities.Poster as PosterEntity

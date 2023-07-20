@@ -10,9 +10,9 @@ import javax.inject.Inject
 
 class DiscoverMovieUseCase @Inject constructor(
     private val movieCatalogueRepository: MovieCatalogueRepository
-) : BaseUseCases<DiscoverMovieUseCase.Params, MovieEntity> {
+) : BaseUseCases<DiscoverMovieUseCase.Params, List<MovieEntity>> {
     data class Params(val page: Int?)
-    override suspend fun execute(params: DiscoverMovieUseCase.Params?): Flow<PagingData<MovieEntity>> {
+    override suspend fun execute(params: DiscoverMovieUseCase.Params?): Flow<Result<List<MovieEntity>>> {
         return movieCatalogueRepository.fetchDiscoverMovie(params?.page ?: 1)
     }
 }

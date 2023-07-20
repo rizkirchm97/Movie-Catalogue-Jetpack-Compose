@@ -13,7 +13,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.paging:paging-common-ktx:3.1.1")
+
     addDiModule()
     addDomainModule()
     addCoreModule()

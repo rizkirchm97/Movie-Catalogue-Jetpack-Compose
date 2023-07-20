@@ -56,6 +56,8 @@ dependencies{
     addHiltDependencies()
     addNetworkDependencies()
     addAndroidTestsDependencies()
+    addRoomDependencies()
+
 }
 
 kapt {

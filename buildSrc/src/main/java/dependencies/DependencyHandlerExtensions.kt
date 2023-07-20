@@ -39,6 +39,7 @@ fun DependencyHandler.addHiltDependencies() {
     print("hiltAndroid: ${Dependencies.hiltAndroid}")
     add("implementation",Dependencies.hiltNavCompose)
     add("kapt",Dependencies.hiltCompiler)
+    add("kapt", Dependencies.hiltComp)
 }
 
 
@@ -62,4 +63,10 @@ fun DependencyHandler.addAndroidTestsDependencies() {
     add("androidTestImplementation",Dependencies.espresso)
     add("debugImplementation",Dependencies.composeTooling)
     add("debugImplementation",Dependencies.composeTestManifest)
+}
+
+fun DependencyHandler.addRoomDependencies(){
+    add("implementation", Dependencies.roomKtx)
+    add("kapt", Dependencies.roomCompiler)
+    add("implementation", Dependencies.roomPaging)
 }

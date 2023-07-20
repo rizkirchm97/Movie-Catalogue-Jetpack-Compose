@@ -52,6 +52,7 @@ dependencies{
     addCoilImageLoadingDependencies()
     addHiltDependencies()
     addAndroidTestsDependencies()
+    addNetworkDependencies()
 }
 
 kapt {

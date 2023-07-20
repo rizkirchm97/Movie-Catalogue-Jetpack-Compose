@@ -1,7 +1,6 @@
 package com.rizkir.data.mapper
 
-import com.rizkir.data.model.movie_videos.DetailMovieVideosResponse
-import com.rizkir.data.model.movie_videos.DetailMovieVideosResult
+import com.rizkir.data.model.dto.movie_videos.DetailMovieVideosResponse
 import com.rizkir.domain.entities.MovieVideoEntity
 
 fun DetailMovieVideosResponse.mapToEntity() : MovieVideoEntity {

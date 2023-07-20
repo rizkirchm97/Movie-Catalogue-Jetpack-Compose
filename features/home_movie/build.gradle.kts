@@ -1,3 +1,5 @@
+
+import dependencies.addDataModule
 import dependencies.addNetworkDependencies
 
 plugins {
@@ -8,6 +10,6 @@ android {
     namespace = "com.rizkir.home_movie"
 }
 dependencies {
-    implementation("androidx.paging:paging-common-ktx:3.1.1")
     addNetworkDependencies()
+    addDataModule()
 }

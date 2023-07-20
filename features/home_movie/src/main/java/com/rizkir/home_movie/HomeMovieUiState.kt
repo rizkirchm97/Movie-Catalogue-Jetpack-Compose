@@ -8,7 +8,7 @@ sealed interface HomeMovieUiState {
     val error: String
 
     data class HasMovieList(
-        val data: PagingData<MovieEntity>?,
+        val data: List<MovieEntity>,
         override val isLoading: Boolean,
         override val error: String
     ) : HomeMovieUiState

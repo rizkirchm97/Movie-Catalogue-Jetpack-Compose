@@ -16,5 +16,5 @@ import dagger.hilt.components.SingletonComponent
 interface RepositoryModule {
 
     @Binds
-    fun bindGithubRepository(movieCatalogueRepositoryImpl: MovieCatalogueRepositoryImpl): MovieCatalogueRepository
+    fun bindMovieRepository(movieCatalogueRepositoryImpl: MovieCatalogueRepositoryImpl): MovieCatalogueRepository
 }

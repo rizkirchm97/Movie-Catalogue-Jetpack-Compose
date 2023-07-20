@@ -15,7 +15,7 @@ import com.rizkir.domain.usecases.MovieReviewsUseCase
 import com.rizkir.domain.usecases.MovieVideosUseCase
 
 interface MovieCatalogueRepository {
-    suspend fun fetchDiscoverMovie(params: Int): Flow<PagingData<MovieEntity>>
+    suspend fun fetchDiscoverMovie(params: Int): Flow<Result<List<MovieEntity>>>
 
     suspend fun fetchDetailMovie(params: DetailMovieUseCase.Params?): Flow<Result<DetailMovieEntity>>
 

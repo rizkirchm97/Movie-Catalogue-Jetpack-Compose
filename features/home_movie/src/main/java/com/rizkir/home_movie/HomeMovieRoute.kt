@@ -1,11 +1,11 @@
 package com.rizkir.home_movie
 
-import HomeMovieListScreen
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.paging.PagingData
+import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.rizkir.domain.entities.MovieEntity
 
@@ -14,30 +14,29 @@ fun HomeMovieRoute(
     viewModel: HomeMovieViewModel,
     onNavigateDetailMovie: () -> Unit
 ) {
-    val uiState = viewModel.uiState.collectAsLazyPagingItems()
-    val uiEvent = remember(viewModel) {
-        val event: (HomeMovieEvent) -> Unit = { viewModel.event(it) }
-        event
-    }
+
+    val movieState = viewModel.moviePagingAsFlow.collectAsLazyPagingItems()
+
 
     HomeMovieRoute(
-        uiState = uiState,
         onNavigateDetailMovie = onNavigateDetailMovie,
         onRefreshMoviesList = {
-            uiEvent(HomeMovieEvent.FetchMovies)
-        }
+//            uiEvent(HomeMovieEvent.FetchMovies)
+        },
+        movieState = movieState
+
     )
 }
 
 @Composable
 private fun HomeMovieRoute(
-    uiState: PagingData<MovieEntity>,
     onNavigateDetailMovie: () -> Unit,
-    onRefreshMoviesList: () -> Unit
+    onRefreshMoviesList: () -> Unit,
+    movieState: LazyPagingItems<MovieEntity>
 ) {
     HomeMovieListScreen(
-        uiState = uiState,
         onNavigateDetailMovie = onNavigateDetailMovie,
-        onRefreshMovieList = onRefreshMoviesList
+        onRefreshMovieList = onRefreshMoviesList,
+        movieState = movieState
     )
 }

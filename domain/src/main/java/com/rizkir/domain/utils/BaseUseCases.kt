@@ -10,5 +10,5 @@ import kotlinx.coroutines.flow.Flow
 interface UseCase
 
 interface BaseUseCases<Params, Type : Any> : UseCase {
-    suspend fun execute(params: Params?): Flow<PagingData<Type>>
+    suspend fun execute(params: Params?): Flow<Result<Type>>
 }

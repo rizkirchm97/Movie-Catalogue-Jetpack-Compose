@@ -1,13 +1,12 @@
 package com.rizkir.data.datasources.remote
 
-import com.rizkir.data.model.movie_detail.MovieDetailResponse
-import com.rizkir.data.model.movie_discover.MovieDiscoverResponse
-import com.rizkir.data.model.movie_images.DetailMovieImagesResponse
-import com.rizkir.data.model.movie_reviews.ReviewResponse
-import com.rizkir.data.model.movie_videos.DetailMovieVideosResponse
+import com.rizkir.data.model.dto.movie_detail.MovieDetailResponse
+import com.rizkir.data.model.dto.movie_discover.MovieDiscoverResponse
+import com.rizkir.data.model.dto.movie_images.DetailMovieImagesResponse
+import com.rizkir.data.model.dto.movie_reviews.ReviewResponse
+import com.rizkir.data.model.dto.movie_videos.DetailMovieVideosResponse
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Path
 import retrofit2.http.Query
 

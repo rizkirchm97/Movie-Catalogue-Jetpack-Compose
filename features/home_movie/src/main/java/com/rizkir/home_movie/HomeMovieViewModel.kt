@@ -2,78 +2,43 @@ package com.rizkir.home_movie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.PagingData
-import com.rizkir.core.utils.Result
-import com.rizkir.domain.entities.MovieEntity
-import com.rizkir.domain.usecases.DiscoverMovieUseCase
+import androidx.paging.Pager
+import androidx.paging.cachedIn
+import androidx.paging.map
+import com.rizkir.data.mapper.mapToEntity
+import com.rizkir.data.model.entity.DiscoverMovieCacheEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/***
+ * I don't know, there is @param[pager] injected into ViewModel
+ * constructor that probably should be mapping at data layer as Uncle Bob mentioned
+ * but at this time, i still don't find the exact best practice which one to use.
+ */
 @HiltViewModel
 class HomeMovieViewModel @Inject constructor(
-    private val movieUseCase: DiscoverMovieUseCase
+    pager: Pager<Int, DiscoverMovieCacheEntity>
 ) : ViewModel() {
-    val event: (HomeMovieEvent) -> Unit
 
-    private val state = MutableStateFlow<PagingData<MovieEntity>>(PagingData.empty())
-    val uiState = state
-        .stateIn(
-            viewModelScope,
-            SharingStarted.Eagerly,
-            state.value
-        )
+//    val event: (HomeMovieEvent) -> Unit
+
+    val moviePagingAsFlow = pager
+        .flow
+        .map { pagingData ->
+            pagingData.map { it.mapToEntity() }
+        }
+        .cachedIn(viewModelScope)
 
     init {
-        event = {
-            when(it) {
-                HomeMovieEvent.FetchMovies -> fetchMovies()
-                else -> Unit
-            }
-        }
-        fetchMovies()
-    }
-
-    private fun fetchMovies() {
-        viewModelScope.launch {
-            movieUseCase.execute(null).collect { result ->
-                state.update {
-                    result
-                }
-
-//                when(result) {
-//                    is Result.Success -> state.update {
-//                        it.copy(error = result.message)
-//                    }
-//                    is Result.Loading -> state.update {
-//                        it.copy(error = "", isLoading = result.loading)
-//                    }
-//                    is Result.Success -> state.update {
-//                        it.copy(movieEntity = result.data)
-//                    }
-//                }
-
-            }
-        }
+//        event = {
+//            when(it) {
+//                HomeMovieEvent.FetchMovies -> moviePagingAsFlow
+//                else -> Unit
+//            }
+//        }
     }
 
 
-}
 
-private data class HomeViewModelState(
-    val isLoading: Boolean = false,
-    val error: String = "",
-    val movieEntity: PagingData<MovieEntity>? = null
-) {
-    fun toUiState(): HomeMovieUiState =
-        if (movieEntity != null) HomeMovieUiState.MovieListEmpty(
-            isLoading = isLoading,
-            error = error
-        )
-        else HomeMovieUiState.HasMovieList(isLoading = isLoading, error = error, data = movieEntity )
 }

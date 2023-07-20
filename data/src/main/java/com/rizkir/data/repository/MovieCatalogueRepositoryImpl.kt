@@ -1,7 +1,5 @@
 package com.rizkir.data.repository
 
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
 import com.rizkir.data.datasources.remote.ApiService
 import com.rizkir.domain.entities.DetailMovieEntity
 import com.rizkir.domain.entities.MovieEntity
@@ -17,9 +15,8 @@ import kotlinx.coroutines.flow.Flow
 import com.rizkir.core.utils.Result
 import com.rizkir.core.utils.code
 import com.rizkir.core.utils.message
-import com.rizkir.data.datasources.AppDataSource
+import com.rizkir.data.mapper.mapToCachedEntity2
 import com.rizkir.data.mapper.mapToEntity
-import com.rizkir.domain.usecases.DiscoverMovieUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.catch
@@ -38,44 +35,38 @@ import javax.inject.Singleton
 class MovieCatalogueRepositoryImpl @Inject constructor(
     private val apiService: ApiService
 ) : MovieCatalogueRepository {
-    override suspend fun fetchDiscoverMovie(params: Int) = Pager(
-        PagingConfig(20)
-    ) {
-        AppDataSource(
-            apiService = apiService
-        )
-    }.flow.flowOn(Dispatchers.IO)
-//    withContext(Dispatchers.IO) {
-//            flow <Result<List<MovieEntity>>> {
-//                emit(Result.Loading(true))
-//                val response = apiService.fetchDiscoverMovie(params)
-//                emit(Result.Loading(false))
-//
-//                when {
-//                    response.errorBody() != null -> {
-//                        emit(
-//                            Result.Error(
-//                                message = response.message(),
-//                                code = response.code()
-//                            )
-//                        )
-//                    }
-//
-//
-//                    response.isSuccessful -> {
-//                        response.body()?.results?.map { it.mapToEntity() }.let {
-//                            emit(Result.Success(it) as Result<List<MovieEntity>>)
-//                        }
-//
-//                    }
-//                }
-//            }.flowOn(Dispatchers.IO).catch { error ->
-//                Timber.e(message = error.localizedMessage)
-//                emit(Result.Loading(false))
-//                delay(5)
-//                emit(Result.Error(message = message(error), code = code(error)))
-//            }.flowOn(Dispatchers.IO)
-//        }
+    override suspend fun fetchDiscoverMovie(params: Int) =
+    withContext(Dispatchers.IO) {
+            flow <Result<List<MovieEntity>>> {
+                emit(Result.Loading(true))
+                val response = apiService.fetchDiscoverMovie(params)
+                emit(Result.Loading(false))
+
+                when {
+                    response.errorBody() != null -> {
+                        emit(
+                            Result.Error(
+                                message = response.message(),
+                                code = response.code()
+                            )
+                        )
+                    }
+
+
+                    response.isSuccessful -> {
+                        response.body()?.results?.map { it.mapToCachedEntity2(response.body()!!.page) }.let {
+                            emit(Result.Success(it) as Result<List<MovieEntity>>)
+                        }
+
+                    }
+                }
+            }.flowOn(Dispatchers.IO).catch { error ->
+                Timber.e(message = error.localizedMessage)
+                emit(Result.Loading(false))
+                delay(5)
+                emit(Result.Error(message = message(error), code = code(error)))
+            }.flowOn(Dispatchers.IO)
+        }
 
 
     override suspend fun fetchDetailMovie(params: DetailMovieUseCase.Params?): Flow<Result<DetailMovieEntity>> =

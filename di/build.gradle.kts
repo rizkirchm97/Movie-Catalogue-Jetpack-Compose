@@ -1,3 +1,4 @@
+import dependencies.addDataModule
 import dependencies.addTimberDependencies
 
 plugins {

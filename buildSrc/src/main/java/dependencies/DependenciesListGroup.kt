@@ -7,7 +7,9 @@ internal val androidComposeDependencies = listOf(
     Dependencies.composeActivity,
     Dependencies.composeUi,
     Dependencies.composePreviewUi,
-    Dependencies.composeNavigation
+    Dependencies.composeNavigation,
+    Dependencies.fragment,
+    Dependencies.youtubePlayer
 )
 
 internal val androidxLifeCycleDependencies = listOf(

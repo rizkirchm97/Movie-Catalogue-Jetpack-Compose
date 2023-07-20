@@ -1,6 +1,6 @@
 package com.rizkir.data.mapper
 
-import com.rizkir.data.model.movie_reviews.ReviewResponse
+import com.rizkir.data.model.dto.movie_reviews.ReviewResponse
 import com.rizkir.domain.entities.MovieReviewEntity
 
 fun ReviewResponse.mapToEntity() : MovieReviewEntity {
