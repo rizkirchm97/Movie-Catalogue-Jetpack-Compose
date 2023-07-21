@@ -3,11 +3,8 @@ package com.rizkir.home_movie
 import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -18,10 +15,6 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.compositionLocalOf
-import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.paging.CombinedLoadStates
@@ -38,7 +31,7 @@ import com.rizkir.domain.entities.MovieEntity
 
 @Composable
 fun HomeMovieListScreen(
-    onNavigateDetailMovie: () -> Unit,
+    onNavigateDetailMovie: (Int) -> Unit,
     onRefreshMovieList: () -> Unit,
     movieState: LazyPagingItems<MovieEntity>
 ) {
@@ -47,7 +40,7 @@ fun HomeMovieListScreen(
             HomeMovieListItem(
                 modifier = modifier,
                 dataItem = dataItem,
-                onItemClick = onNavigateDetailMovie
+                onItemClick = {params -> onNavigateDetailMovie(params)}
             )
         },
         onRefreshList = onRefreshMovieList,
@@ -76,7 +69,7 @@ private fun HomeMovieListScreen(
                         val dataItem = movieState[index]
                         Log.e("DataItemInUi", "$dataItem")
                         if (dataItem != null) {
-                            hasMovieList(dataItem = dataItem, modifier = modifier)
+                            hasMovieList(dataItem, modifier)
                         }
                     }
 
@@ -89,7 +82,7 @@ private fun HomeMovieListScreen(
 
                 if (movieState.loadState.refresh is LoadState.Error || movieState.loadState.append is LoadState.Error) {
                     NetworkErrorMessage(
-                        message = "Error occurred : ${(movieState.loadState.refresh as LoadState.Error).error.message}",
+                        message = "Error occurred : ${movieState.loadState.refresh}",
                         onClickRefresh = onRefreshList
                     )
 
@@ -118,14 +111,14 @@ fun LoadingComponent(
 fun HomeMovieListItem(
     modifier: Modifier = Modifier,
     dataItem: MovieEntity,
-    onItemClick: () -> Unit
+    onItemClick: (movieId: Int) -> Unit
 ) {
     Card(
 
         modifier = modifier
             .padding(16.dp)
             .clickable {
-                onItemClick()
+                onItemClick(dataItem.id)
             },
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         shape = RoundedCornerShape(size = 4.dp)

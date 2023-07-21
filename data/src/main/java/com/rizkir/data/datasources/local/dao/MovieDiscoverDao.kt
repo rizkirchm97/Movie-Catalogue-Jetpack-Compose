@@ -1,4 +1,4 @@
-package com.rizkir.data.datasources.local
+package com.rizkir.data.datasources.local.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao

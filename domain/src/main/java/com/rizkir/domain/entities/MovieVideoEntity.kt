@@ -8,13 +8,11 @@ data class MovieVideoEntity(
     val results: List<Result>
 ) {
     data class Result(
-        val id: String,
-        val iso_3166_1: String,
-        val iso_639_1: String,
+        val idResult: String,
+        val id: Int,
         val key: String,
         val name: String,
         val site: String,
-        val size: Int,
         val type: String
     )
 }

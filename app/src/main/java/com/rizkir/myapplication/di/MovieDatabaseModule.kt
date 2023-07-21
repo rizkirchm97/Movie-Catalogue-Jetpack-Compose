@@ -2,10 +2,9 @@ package com.rizkir.myapplication.di
 
 import android.content.Context
 import androidx.room.Room
-import com.rizkir.data.datasources.local.MovieDatabase
-import com.rizkir.data.datasources.local.MovieDiscoverDao
-import com.rizkir.data.datasources.local.RemoteKeyDao
-import dagger.Binds
+import com.rizkir.data.datasources.local.db.MovieDatabase
+import com.rizkir.data.datasources.local.dao.MovieDiscoverDao
+import com.rizkir.data.datasources.local.dao.RemoteKeyDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

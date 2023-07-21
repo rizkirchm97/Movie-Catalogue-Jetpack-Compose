@@ -1,13 +1,12 @@
 package com.rizkir.data.datasources.remote
 
 import com.rizkir.data.model.entity.RemoteKeyEntity
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.rizkir.data.datasources.local.MovieDatabase
+import com.rizkir.data.datasources.local.db.MovieDatabase
 import com.rizkir.data.mapper.mapToCachedEntity2
 import com.rizkir.data.model.entity.DiscoverMovieCacheEntity
 import retrofit2.HttpException

@@ -27,11 +27,12 @@ interface ApiService {
 
     @GET("movie/{movie_id}/videos")
     suspend fun getDetailMovieVideos(
-        @Path("movie_id") movieId: Int
+        @Path("movie_id") movieId: Int?
     ) : Response<DetailMovieVideosResponse>
 
     @GET("movie/{movie_id}/reviews")
     suspend fun getMovieReview(
-        @Path("movie_id") movieId: Int
+        @Path("movie_id") movieId: Int?
     ) : Response<ReviewResponse>
+
 }

@@ -24,4 +24,5 @@ data class DetailMovieEntity(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int,
+    val genre: String
 )

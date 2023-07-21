@@ -1,27 +1,55 @@
 package com.rizkir.data.mapper
 
 import com.rizkir.data.model.dto.movie_videos.DetailMovieVideosResponse
-import com.rizkir.domain.entities.MovieVideoEntity
+import com.rizkir.data.model.dto.movie_videos.DetailMovieVideosResult
+import com.rizkir.data.model.entity.MovieVideoEntity
+import java.util.Random
+import java.util.UUID
+import com.rizkir.domain.entities.MovieVideoEntity as DomainMovieVideoEntity
 
-fun DetailMovieVideosResponse.mapToEntity() : MovieVideoEntity {
+
+
+fun DetailMovieVideosResult.mapToCachedEntity(movieID: Int): MovieVideoEntity {
     return MovieVideoEntity(
-        id = id,
-        results = if (results.isNotEmpty()) {
-            listOf(
-                MovieVideoEntity.Result(
-                    id = results[0].id,
-                    name = results[0].name,
-                    type = results[0].type,
-                    iso_639_1 = results[0].iso_639_1,
-                    iso_3166_1 = results[0].iso_3166_1,
-                    key = results[0].key,
-                    site = results[0].site,
-                    size = results[0].size
-                )
-            )
-        } else {
-            emptyList()
-        }
+        idResult = id,
+        id = movieID,
+        key = key,
+        name = name,
+        site = site,
+        type = type
+    )
+}
 
+
+fun DetailMovieVideosResult.mapToDomainEntity(movieID: Int): DomainMovieVideoEntity.Result {
+    return DomainMovieVideoEntity.Result(
+        idResult = id,
+        id = movieID,
+        key = key,
+        name = name,
+        site = site,
+        type = type
+    )
+}
+
+fun MovieVideoEntity.mapToDomainEntity(): DomainMovieVideoEntity.Result {
+    return DomainMovieVideoEntity.Result(
+        idResult = idResult,
+        id = id,
+        key = key,
+        name = name,
+        site = site,
+        type = type
+    )
+}
+
+fun DomainMovieVideoEntity.Result.mapToDataEntity():  MovieVideoEntity{
+    return  MovieVideoEntity(
+        idResult = idResult,
+        id = id,
+        key = key,
+        name = name,
+        site = site,
+        type = type
     )
 }

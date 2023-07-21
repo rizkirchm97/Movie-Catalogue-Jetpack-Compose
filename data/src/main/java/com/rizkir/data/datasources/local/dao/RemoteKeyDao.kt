@@ -1,4 +1,4 @@
-package com.rizkir.data.datasources.local
+package com.rizkir.data.datasources.local.dao
 
 import com.rizkir.data.model.entity.RemoteKeyEntity
 import androidx.room.Dao

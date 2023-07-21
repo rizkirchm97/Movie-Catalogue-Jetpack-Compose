@@ -23,18 +23,22 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 fun VideoWebViewCompose(url: String, modifier: Modifier = Modifier) {
 
 
-    AndroidView(factory = {
-        val view = YouTubePlayerView(it)
-        view.addYouTubePlayerListener(
-            object : AbstractYouTubePlayerListener() {
-                override fun onReady(youTubePlayer: YouTubePlayer) {
-                    super.onReady(youTubePlayer)
-                    youTubePlayer.cueVideo(url, 0f)
+    Box(modifier = modifier) {
+        AndroidView(factory = {
+            val view = YouTubePlayerView(it)
+            view.addYouTubePlayerListener(
+                object : AbstractYouTubePlayerListener() {
+                    override fun onReady(youTubePlayer: YouTubePlayer) {
+                        super.onReady(youTubePlayer)
+                        youTubePlayer.cueVideo(url, 0f)
+                    }
                 }
-            }
-        )
-        view
-    })
+            )
+            view
+        })
+    }
+
+
 
 
 
